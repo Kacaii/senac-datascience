@@ -14,11 +14,32 @@ def handle_append(data_path: str):
         email=email,
     )
 
+    if verify_email_exists(data_path, email):
+        print(email, "is already registred, please use a different address. 󰛮")
+        return
+
     match append_person_to_json(data_path, person):
         case True:
-            print(person["name"], "was registred successfully!")
+            print(person["name"], "was registred successfully. 󰆼")
         case False:
             print("Failed to add", person["name"])
+
+
+def verify_email_exists(data_path: str, email: str) -> bool:
+    try:
+        with open(data_path, "r") as file:
+            data: list[Person] = json.load(file)
+    except JSONDecodeError:
+        print("Failed to decode data from the json file. 󰘦")
+        return False
+    except FileNotFoundError:
+        print("Failed to locate the data file. 󱔼")
+        return False
+
+    if any(person["email"] == email for person in data):
+        return True
+
+    return False
 
 
 def append_person_to_json(data_path: str, person: Person) -> bool:
@@ -31,13 +52,6 @@ def append_person_to_json(data_path: str, person: Person) -> bool:
     except FileNotFoundError:
         print("Failed to locate the data file. 󱔼")
         return False
-
-    match person in data:
-        case True:
-            print(person["name"], "is already on the list")
-            return False
-        case False:
-            pass
 
     data.append(person)
 
