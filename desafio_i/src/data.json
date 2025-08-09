@@ -1,13 +1,1 @@
-[
-  {
-    "name": "Fulano",
-    "phone": "00000000",
-    "email": "email@example.com"
-  },
-
-  {
-    "name": "Sicrano",
-    "phone": "11111111",
-    "email": "email@example.com"
-  }
-]
+[{ "name": "aaa", "phone": "000", "": "email0" }]
