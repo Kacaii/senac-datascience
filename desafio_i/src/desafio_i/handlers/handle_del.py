@@ -46,13 +46,10 @@ def remove_person_from_json(json_path: str, email: str) -> bool:
         try:
             with open(data_path, "w") as file:
                 json.dump(updated_data, file)
-
-            # Return true if the person was removed successfully.
             return True
         except JSONDecodeError:
             print("Failed to decode data from the json file. 󰘦")
             return False
-        # Just in case someone inputs a file that doesnt exist.
         except FileNotFoundError:
             print("Failed to locate the data file. 󱔼")
             return False

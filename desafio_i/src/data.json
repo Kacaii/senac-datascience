@@ -1,2 +1,5 @@
-[{ "name": "aaa", "phone": "000", "email": "email0" }]
+[
+  { "name": "aaa", "phone": "000", "email": "email0" },
+  { "name": "sad", "phone": "dasd", "email": "adsadsad" }
+]
 

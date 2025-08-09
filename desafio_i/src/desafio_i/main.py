@@ -3,6 +3,7 @@ import os
 import sys
 import json
 from .handlers.handle_del import handle_remove
+from .handlers.handle_add import handle_append
 from .shared import Person
 
 
@@ -31,6 +32,8 @@ def main():
     match sys.argv[1]:
         case "del":
             handle_remove(json_path)
+        case "add":
+            handle_append(json_path)
         case _:
             print(help_message)
 
