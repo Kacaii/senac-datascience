@@ -3,24 +3,42 @@ from .handlers import handle_add
 
 
 def main():
+    #   First we need somewhere to store it.
+    # Stack memory should work just fine for this Simple example.
     register = ContactRegister()
 
-    #   Main Loop
+    #   Main Loop -------------------------------------------------------------
     while True:
+        # TODO: Commands
         match input(" > "):
             case "1" | "add":
                 handle_add(register)
+
             case "2" | "del":
-                pass
+                # TODO: Handle removing
+                print("TODO")
+
             case "3" | "update":
-                pass
+                # TODO: Handle updating
+                print("TODO")
+
             case "4" | "list":
                 # TODO: Use a handler
                 print(register.get_contacts())
+
+            case "help":
+                # TODO: Help message
+                print("TODO")
+
             case "":
+                # If your press enter: 󰌑
+                # Just return safely from the main function.
                 return
+
             case _:
                 print(" Input not recognized.")
+
+    # 󰑀  End of the main event loop --------------------------------------------
 
 
 if __name__ == "__main__":
