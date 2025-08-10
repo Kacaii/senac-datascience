@@ -1,7 +1,8 @@
-from typing import TypedDict
+from dataclasses import dataclass
 
 
-class Contato(TypedDict):
+@dataclass
+class Contato:
     """
       Representa um contato em nosso sistema.
     Não deve ser acessado diretamente.
