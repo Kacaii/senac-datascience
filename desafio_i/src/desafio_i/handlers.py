@@ -1,4 +1,4 @@
-from .contact_register import ContactRegister, Contact
+from .contact_register import Contact, ContactRegister
 
 
 def handle_help() -> None:
@@ -61,6 +61,88 @@ def handle_del(register: ContactRegister) -> None:
     for contact in updated_list:
         register.remove_contact(contact)
     return
+
+
+def handle_update(register: ContactRegister) -> None:
+    "󰚰  Handler for updating information about the contacts."
+    email = input("󰛮  Input the email from the contact you like to update:\n  > ")
+
+    # Return safely if empty input.
+    if email == "":
+        return
+
+    updated_list: list[Contact] = list(
+        filter(
+            lambda contact: contact["email"] == email,
+            register.get_contacts(),
+        )
+    )
+
+    # Return if no contacts with that email were found.
+    if len(updated_list) == 0:
+        print("No contact was found with that email address:")
+        return
+
+    print("\n")
+    handle_list(register=register)
+
+    # Continue if you found a contact with the given address.
+    print("  What information would you like to update?")
+    print("  1. name")
+    print("  2. phone")
+    print("  3. email")
+
+    target = input("  >  ")
+    new_value = input("  Input the new value:\n  > ")
+
+    match target:
+        # Updating the name.
+        case "1" | "name":
+            for contact in updated_list:
+                # Happy path
+                register.update_contact(contact, "name", new_value)
+                return
+
+        # Updating the phone number.
+        case "2" | "phone":
+            for contact in updated_list:
+                # First check if it doesnt exist
+                if contact["phone"] == new_value:
+                    print(
+                        "Phone already registred in the list, please use a different one."
+                    )
+                    return  # Return if found
+
+                # Happy path ---------------------------------------------------
+                register.update_contact(
+                    contact=contact, field="phone", new_value=new_value
+                )
+                return  # 
+
+        # Updating the email address.
+        case "3" | "email":
+            for contact in updated_list:
+                # First check if it doesnt exist
+                if contact["email"] == new_value:
+                    print(
+                        "Email already registred in the list, please use a different one."
+                    )
+
+                    return  # Return if found
+
+                # Happy path ---------------------------------------------------
+                register.update_contact(
+                    contact=contact, field="email", new_value=new_value
+                )
+                return  # 
+
+        case "":
+            # Return safely if blank
+            return
+
+        case _:
+            print("Unsuported field")
+            return
 
 
 def handle_list(register: ContactRegister) -> None:

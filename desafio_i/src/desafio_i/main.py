@@ -1,5 +1,5 @@
 from .contact_register import ContactRegister
-from .handlers import handle_add, handle_del, handle_list, handle_help
+from .handlers import handle_add, handle_del, handle_list, handle_help, handle_update
 
 
 def main():
@@ -19,8 +19,7 @@ def main():
                 handle_del(register)
 
             case "3" | "update":
-                # TODO: Handle updating
-                print("TODO")
+                handle_update(register)
 
             case "4" | "list":
                 # Print every contact on the terminal.
