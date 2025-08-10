@@ -4,9 +4,9 @@ from .contact_register import ContactRegister, Contact
 # HACK: You should probaly check if the email or phone is already registred.
 def handle_add(register: ContactRegister) -> None:
     "  Handler for registering contacts"
-    name = input("  Input your name:\n > ")
-    phone = input("󰘂  Input your phone:\n > ")
-    email = input("󰛮  Input your email:\n > ")
+    name = input("  Input your name:\n  > ")
+    phone = input("󰘂  Input your phone:\n  > ")
+    email = input("󰛮  Input your email:\n  > ")
 
     contact = Contact(name=name, phone=phone, email=email)
     register.register_contact(contact)
@@ -14,7 +14,7 @@ def handle_add(register: ContactRegister) -> None:
 
 def handle_del(register: ContactRegister) -> None:
     "  Handler for removing contacts"
-    email = input("󰛮  Input the email you would like to remove:\n > ")
+    email = input("󰛮  Input the email you would like to remove:\n  > ")
 
     updated_list: list[Contact] = list(
         filter(

@@ -42,14 +42,17 @@ class ContactRegister:
         Use its public methods to update.
         """
         self.__list = []
+        return
 
     def register_contact(self, contact: Contact) -> None:
         "  Appends a contact to the list."
         self.__list.append(contact)
+        return
 
     def remove_contact(self, contact: Contact) -> None:
         "󰂭  Removes a contact from the list."
         self.__list.remove(contact)
+        return
 
     def update_contact(self, contact: Contact, field: str, new_value: str) -> None:
         "󰚰  Updates a contact from the list."
