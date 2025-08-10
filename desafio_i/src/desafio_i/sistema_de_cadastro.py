@@ -1,18 +1,18 @@
 from typing import TypedDict
 
 
-class Pessoa(TypedDict):
+class Contato(TypedDict):
     """
-      Representa um usuário em nosso sistema.
+      Representa um contato em nosso sistema.
     Não deve ser acessado diretamente.
     """
 
     nome: str
-    """  Nome do usuário cadastrado."""
+    """  Nome do contato cadastrado."""
     telefone: str
-    """󱆫  Telefone do usuário cadastrado."""
+    """󱆫  Telefone do contato cadastrado."""
     email: str
-    """󰛮  Email do usuário cadastrado."""
+    """󰛮  Email do contato cadastrado."""
 
 
 class SistemaDeCadastro:
@@ -24,20 +24,18 @@ class SistemaDeCadastro:
     toda a lista será apagada ao fim da execução do programa.
     """
 
-    __lista: list[Pessoa]
+    __lista: list[Contato]
     """󰒡  Apenas uso interno, não deve ser acessada diretamente,"""
 
     def __init__(self) -> None:
         self.__lista = []
 
-    def cadastrar_usuario(self):
-        # TODO:
-        pass
+    def cadastrar_contato(self, pessoa: Contato) -> None:
+        self.__lista.append(pessoa)
 
-    def remover_usuario(self):
-        # TODO:
-        pass
+    def remover_contato(self, pessoa: Contato) -> None:
+        self.__lista.remove(pessoa)
 
-    def acessar_usuarios(self) -> list[Pessoa]:
+    def listar_contatos(self) -> list[Contato]:
         """󰆏 Retorna uma cópia da lista interna."""
         return self.__lista.copy()
