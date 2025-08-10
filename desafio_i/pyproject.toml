@@ -11,7 +11,7 @@ dependencies = []
 packages = [{ include = "desafio_i", from = "src" }]
 
 [tool.poetry.scripts]
-desafio_i = "desafio_i.main:main"
+start = "desafio_i.main:main"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

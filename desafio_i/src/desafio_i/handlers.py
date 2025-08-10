@@ -1,4 +1,4 @@
-from .contact_register import Contact, ContactRegister
+from .contact_manager import Contact, ContactManager
 
 
 def handle_help() -> None:
@@ -19,13 +19,14 @@ def handle_help() -> None:
     return
 
 
-def handle_add(register: ContactRegister) -> None:
+def handle_add(contact_manager: ContactManager) -> None:
     """
       Handler for registering contacts.
 
       Verifies if the phone / email is already
     on the list before appending to it.
     """
+
     name = input("  Input your name:\n  > ")
     phone = input("󰘂  Input your phone:\n  > ")
     email = input("󰛮  Input your email:\n  > ")
@@ -33,7 +34,7 @@ def handle_add(register: ContactRegister) -> None:
     contact = Contact(name=name, phone=phone, email=email)
 
     # Check if it already exists.
-    for registred_contact in register.get_contacts():
+    for registred_contact in contact_manager.get_contacts():
         if registred_contact["email"] == contact.email:
             print("Email already registred in the list, please use a different one.")
             return
@@ -42,29 +43,31 @@ def handle_add(register: ContactRegister) -> None:
             return
 
     # 󰆓  Register the contact if everything goes well
-    register.register_contact(contact=contact)
+    contact_manager.register_contact(contact=contact)
     return
 
 
-def handle_del(register: ContactRegister) -> None:
+def handle_del(contact_manager: ContactManager) -> None:
     "  Handler for removing contacts"
+
     email = input("󰛮  Input the email you would like to remove:\n  > ")
 
     updated_list: list[Contact] = list(
         filter(
             lambda contact: contact["email"] == email,
-            register.get_contacts(),
+            contact_manager.get_contacts(),
         )
     )
 
     # Remove everyone that has this email.
     for contact in updated_list:
-        register.remove_contact(contact)
+        contact_manager.remove_contact(contact)
     return
 
 
-def handle_update(register: ContactRegister) -> None:
+def handle_update(contact_manager: ContactManager) -> None:
     "󰚰  Handler for updating information about the contacts."
+
     email = input("󰛮  Input the email from the contact you like to update:\n  > ")
 
     # Return safely if empty input.
@@ -74,7 +77,7 @@ def handle_update(register: ContactRegister) -> None:
     updated_list: list[Contact] = list(
         filter(
             lambda contact: contact["email"] == email,
-            register.get_contacts(),
+            contact_manager.get_contacts(),
         )
     )
 
@@ -84,7 +87,7 @@ def handle_update(register: ContactRegister) -> None:
         return
 
     print("\n")
-    handle_list(register=register)
+    handle_list(contact_manager=contact_manager)
 
     # Continue if you found a contact with the given address.
     print("  What information would you like to update?")
@@ -100,7 +103,7 @@ def handle_update(register: ContactRegister) -> None:
         case "1" | "name":
             for contact in updated_list:
                 # Happy path
-                register.update_contact(
+                contact_manager.update_contact(
                     contact=contact, field="name", new_value=new_value
                 )
                 return
@@ -116,7 +119,7 @@ def handle_update(register: ContactRegister) -> None:
                     return  # Return if found
 
                 # Happy path ---------------------------------------------------
-                register.update_contact(
+                contact_manager.update_contact(
                     contact=contact, field="phone", new_value=new_value
                 )
                 return  # 
@@ -133,7 +136,7 @@ def handle_update(register: ContactRegister) -> None:
                     return  # Return if found
 
                 # Happy path ---------------------------------------------------
-                register.update_contact(
+                contact_manager.update_contact(
                     contact=contact, field="email", new_value=new_value
                 )
                 return  # 
@@ -147,8 +150,9 @@ def handle_update(register: ContactRegister) -> None:
             return
 
 
-def handle_list(register: ContactRegister) -> None:
+def handle_list(contact_manager: ContactManager) -> None:
     "  Handler for print every contact on the terminal."
-    for registred_contact in register.get_contacts():
+
+    for registred_contact in contact_manager.get_contacts():
         print(registred_contact)
     return

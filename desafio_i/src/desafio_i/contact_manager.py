@@ -22,12 +22,13 @@ class Contact:
         self.__dict__[key] = new_value
 
     def __str__(self) -> str:
+        "󰦨  String representation of a contact."
         return f"\tname:\t{self.name}\tphone:\t{self.phone}\temail:\t{self.email}"
 
 
-class ContactRegister:
+class ContactManager:
     """
-    󰟀  System used for CRUD operation..
+    󰟀  Manager used for CRUD operation..
     Use its public methods to update its internal list.
 
     󰛌  All memory storing the internal list will be deallocated
@@ -42,7 +43,7 @@ class ContactRegister:
     def __init__(self) -> None:
         """
           Initialize the class using an empty list.
-        Use its public methods to update.
+        Use its public methods to update it.
         """
         self.__list = []
         return
