@@ -1,16 +1,5 @@
 from .contact_register import ContactRegister
-from .handlers import handle_add, handle_del, handle_list
-
-HELP_MESSAGE = """
-    Usage:
-
-        1. add      󰆓  Add a contact to the list
-        2. del      󰂭  Remove a contact from the list
-        3. update   󰚰  Update a contact from the list.
-        4. list       Print the list of contacts.
-
-        press ENTER to quit 󰌑
-    """
+from .handlers import handle_add, handle_del, handle_list, handle_help
 
 
 def main():
@@ -22,9 +11,11 @@ def main():
     while True:
         match input("  > "):
             case "1" | "add":
+                # Receive input from stdin to register a new contact.
                 handle_add(register)
 
             case "2" | "del":
+                # Pass an arbitrary email to delete the contact from the list.
                 handle_del(register)
 
             case "3" | "update":
@@ -32,11 +23,12 @@ def main():
                 print("TODO")
 
             case "4" | "list":
+                # Print every contact on the terminal.
                 handle_list(register)
 
             case "help":
                 # Show a nice help message for the user.
-                print(HELP_MESSAGE)
+                handle_help()
 
             case "" | "quit" | "q" | "exit":
                 # Just return safely from the main function.
