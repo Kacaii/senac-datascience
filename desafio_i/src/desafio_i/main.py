@@ -1,5 +1,6 @@
 from .contact_manager import ContactManager
 from .handlers import handle_add, handle_del, handle_list, handle_help, handle_update
+import os
 
 
 def main():
@@ -7,12 +8,16 @@ def main():
     # Stack memory should work just fine for this simple example.
     manager = ContactManager()
 
+    #   Useful from making separators.
+    terminal_columns = os.get_terminal_size().columns
+
     # Print help on first interaction
     handle_help()
 
     #   Main event loop -------------------------------------------------------------
 
     while True:
+        print("-" * terminal_columns)
         match input("  > "):
             case "1" | "add" | "new":
                 # Receive input from stdin to register a new contact.
