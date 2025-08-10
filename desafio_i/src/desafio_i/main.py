@@ -1,20 +1,22 @@
-from .sistema_de_cadastro import ContactRegister
+from .contact_register import ContactRegister
+from .handlers import handle_add
 
 
 def main():
-    system = ContactRegister()
+    register = ContactRegister()
 
     #   Main Loop
     while True:
         match input(" > "):
             case "1" | "add":
-                pass
+                handle_add(register)
             case "2" | "del":
                 pass
             case "3" | "update":
                 pass
             case "4" | "list":
-                print(system.get_contacts())
+                # TODO: Use a handler
+                print(register.get_contacts())
             case "":
                 return
             case _:

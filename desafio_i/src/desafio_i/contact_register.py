@@ -24,16 +24,17 @@ class ContactRegister:
     󰨇  System used for CRUD operation..
     Use its public methods to update its internal list.
 
-    󰛌 All memory storing the internal list will be deallocated
+    󰛌  All memory storing the internal list will be deallocated
     once the execution ends.
 
-     This script uses stack memory only.
+      This script uses stack memory only.
     """
 
     __list: list[Contact]
     """󰒡  Internal use only. It should not be accessed directly."""
 
     def __init__(self) -> None:
+        """  Initialize the class using an empty list."""
         self.__list = []
 
     def register_contact(self, contact: Contact) -> None:
