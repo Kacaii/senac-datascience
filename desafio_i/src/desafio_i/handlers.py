@@ -26,3 +26,8 @@ def handle_del(register: ContactRegister) -> None:
     # Remove everyone that has this email.
     for contact in updated_list:
         register.remove_contact(contact)
+
+
+def handle_list(register: ContactRegister) -> None:
+    for contact in register.get_contacts():
+        print(contact)

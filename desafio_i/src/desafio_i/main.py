@@ -1,5 +1,5 @@
 from .contact_register import ContactRegister
-from .handlers import handle_add, handle_del
+from .handlers import handle_add, handle_del, handle_list
 
 HELP_MESSAGE = """
     Usage:
@@ -20,7 +20,6 @@ def main():
 
     #   Main Loop -------------------------------------------------------------
     while True:
-        # TODO: Commands
         match input("  > "):
             case "1" | "add":
                 handle_add(register)
@@ -33,8 +32,7 @@ def main():
                 print("TODO")
 
             case "4" | "list":
-                # TODO: Use a handler
-                print(register.get_contacts())
+                handle_list(register)
 
             case "help":
                 # Show a nice help message for the user.
