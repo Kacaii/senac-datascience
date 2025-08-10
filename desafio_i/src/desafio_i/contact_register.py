@@ -15,8 +15,11 @@ class Contact:
     email: str
     "󰛮  Email of the registred contact"
 
+    def __getitem__(self, key):
+        return self.__dict__[key]
+
     def __setitem__(self, key, new_value):
-        self[key] = new_value
+        self.__dict__[key] = new_value
 
 
 class ContactRegister:
