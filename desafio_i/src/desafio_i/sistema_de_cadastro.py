@@ -31,11 +31,14 @@ class SistemaDeCadastro:
     def __init__(self) -> None:
         self.__lista = []
 
-    def cadastrar_contato(self, pessoa: Contato) -> None:
-        self.__lista.append(pessoa)
+    def cadastrar_contato(self, contato: Contato) -> None:
+        self.__lista.append(contato)
 
-    def remover_contato(self, pessoa: Contato) -> None:
-        self.__lista.remove(pessoa)
+    def remover_contato(self, contato: Contato) -> None:
+        self.__lista.remove(contato)
+
+    def atualizar_contato(self, contato: Contato):
+        pass
 
     def listar_contatos(self) -> list[Contato]:
         """󰆏 Retorna uma cópia da lista interna."""

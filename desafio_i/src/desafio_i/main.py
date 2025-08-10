@@ -13,6 +13,8 @@ def main():
                 pass
             case "3" | "update":
                 pass
+            case "4" | "list":
+                print(sistema.listar_contatos())
             case "":
                 return
             case _:
