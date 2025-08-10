@@ -1,10 +1,10 @@
-from .sistema_de_cadastro import SistemaDeCadastro
+from .sistema_de_cadastro import ContactRegister
 
 
 def main():
-    sistema = SistemaDeCadastro()
+    system = ContactRegister()
 
-    #   Loop de execução principal.
+    #   Main Loop
     while True:
         match input(" > "):
             case "1" | "add":
@@ -14,11 +14,11 @@ def main():
             case "3" | "update":
                 pass
             case "4" | "list":
-                print(sistema.listar_contatos())
+                print(system.get_contacts())
             case "":
                 return
             case _:
-                print(" Comando não reconhecido")
+                print(" Input not recognized.")
 
 
 if __name__ == "__main__":

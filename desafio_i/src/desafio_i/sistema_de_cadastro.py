@@ -2,44 +2,50 @@ from dataclasses import dataclass
 
 
 @dataclass
-class Contato:
+class Contact:
     """
-      Representa um contato em nosso sistema.
-    Não deve ser acessado diretamente.
+      Represents a contact in our system.
+    It should not be accessed directly.
     """
 
-    nome: str
-    """  Nome do contato cadastrado."""
-    telefone: str
-    """󱆫  Telefone do contato cadastrado."""
+    name: str
+    """  Name of the registred contact."""
+    phone: str
+    """󱆫  Phone of the registred contact."""
     email: str
-    """󰛮  Email do contato cadastrado."""
+    """󰛮  Email of the registred contact"""
+
+    def __setitem__(self, key, new_value):
+        self[key] = new_value
 
 
-class SistemaDeCadastro:
+class ContactRegister:
     """
-    󰨇  Sistema utilizado para operações CRUD.
-    Faça uso de seus métodos públicos para manipular sua lista interna.
+    󰨇  System used for CRUD operation..
+    Use its public methods to update its internal list.
 
-    Esse programa usa apenas stack memory,
-    toda a lista será apagada ao fim da execução do programa.
+    󰛌 All memory storing the internal list will be deallocated
+    once the execution ends.
+
+     This script uses stack memory only.
     """
 
-    __lista: list[Contato]
-    """󰒡  Apenas uso interno, não deve ser acessada diretamente,"""
+    __list: list[Contact]
+    """󰒡  Internal use only. It should not be accessed directly."""
 
     def __init__(self) -> None:
-        self.__lista = []
+        self.__list = []
 
-    def cadastrar_contato(self, contato: Contato) -> None:
-        self.__lista.append(contato)
+    def register_contact(self, contact: Contact) -> None:
+        self.__list.append(contact)
 
-    def remover_contato(self, contato: Contato) -> None:
-        self.__lista.remove(contato)
+    def remove_contact(self, contact: Contact) -> None:
+        self.__list.remove(contact)
 
-    def atualizar_contato(self, contato: Contato):
-        pass
+    def update_contact(self, contact: Contact, field: str, new_value: str) -> None:
+        contact[field] = new_value
+        return
 
-    def listar_contatos(self) -> list[Contato]:
-        """󰆏 Retorna uma cópia da lista interna."""
-        return self.__lista.copy()
+    def get_contacts(self) -> list[Contact]:
+        """󰆏 Returns a copy of its internal list."""
+        return self.__list.copy()
