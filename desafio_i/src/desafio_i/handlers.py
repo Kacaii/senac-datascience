@@ -42,7 +42,7 @@ def handle_add(register: ContactRegister) -> None:
             return
 
     # 󰆓  Register the contact if everything goes well
-    register.register_contact(contact)
+    register.register_contact(contact=contact)
     return
 
 
@@ -100,7 +100,9 @@ def handle_update(register: ContactRegister) -> None:
         case "1" | "name":
             for contact in updated_list:
                 # Happy path
-                register.update_contact(contact, "name", new_value)
+                register.update_contact(
+                    contact=contact, field="name", new_value=new_value
+                )
                 return
 
         # Updating the phone number.

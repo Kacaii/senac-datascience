@@ -7,23 +7,27 @@ def main():
     # Stack memory should work just fine for this Simple example.
     register = ContactRegister()
 
-    #   Main Loop -------------------------------------------------------------
+    # Print help on first interaction
+    handle_help()
+
+    #   Main event loop -------------------------------------------------------------
+
     while True:
         match input("  > "):
             case "1" | "add":
                 # Receive input from stdin to register a new contact.
-                handle_add(register)
+                handle_add(register=register)
 
             case "2" | "del":
                 # Pass an arbitrary email to delete the contact from the list.
-                handle_del(register)
+                handle_del(register=register)
 
             case "3" | "update":
-                handle_update(register)
+                handle_update(register=register)
 
             case "4" | "list":
                 # Print every contact on the terminal.
-                handle_list(register)
+                handle_list(register=register)
 
             case "help":
                 # Show a nice help message for the user.
@@ -34,6 +38,7 @@ def main():
                 return
 
             case _:
+                # Unsupported input.
                 print(" Input not recognized.")
 
     # 󰑀  End of the main event loop --------------------------------------------
