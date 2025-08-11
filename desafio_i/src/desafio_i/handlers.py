@@ -1,4 +1,4 @@
-import pandas as pd
+import polars as pl
 from .contact_manager import Contact, ContactManager
 
 
@@ -154,9 +154,9 @@ def handle_update(contact_manager: ContactManager) -> None:
 def handle_list(contact_manager: ContactManager) -> None:
     "  Handler for print every contact on the terminal."
 
-    contacts = contact_manager.get_contacts()
+    data = contact_manager.get_contacts()
 
     # Only print if the list is not empty.
-    if len(contacts) > 0:
-        df = pd.DataFrame(contacts)
+    if len(data) > 0:
+        df = pl.DataFrame(data=data)  # polars is cool!! 
         print(df)
