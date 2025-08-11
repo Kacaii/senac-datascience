@@ -1,3 +1,4 @@
+import pandas as pd
 from .contact_manager import Contact, ContactManager
 
 
@@ -153,6 +154,9 @@ def handle_update(contact_manager: ContactManager) -> None:
 def handle_list(contact_manager: ContactManager) -> None:
     "  Handler for print every contact on the terminal."
 
-    for registred_contact in contact_manager.get_contacts():
-        print(registred_contact)
-    return
+    contacts = contact_manager.get_contacts()
+
+    # Only print if the list is not empty.
+    if len(contacts) > 0:
+        df = pd.DataFrame(contacts)
+        print(df)

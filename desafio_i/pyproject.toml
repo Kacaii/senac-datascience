@@ -5,7 +5,7 @@ description = ""
 authors = [{ name = "Kacaii", email = "kacaii.privado@gmail.com" }]
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = ["pandas (>=2.3.1,<3.0.0)"]
 
 [tool.poetry]
 packages = [{ include = "desafio_i", from = "src" }]
