@@ -2,6 +2,11 @@ from src.desafio_i.contact_manager import ContactManager, Contact
 
 
 def test_contact_manager():
+    """
+    󰙨  Verify if the CRUD operations from the  ContactManager
+    are working as expected.
+    """
+
     manager = ContactManager()
 
     #   Manager start empty ---------------------------------------------------
@@ -16,7 +21,7 @@ def test_contact_manager():
 
     #   Wibble is updated successfully ----------------------------------------
     updated_dict: dict[str, str] = {
-        "name": "wooble",
+        "name": "wobble",
         "phone": "4321",
         "email": "wobble@wibble",
     }
