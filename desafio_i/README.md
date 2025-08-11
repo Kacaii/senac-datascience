@@ -1,7 +1,8 @@
 # Start
 
-Run this to start the project.
+Start the project.
 
-```sh
-poetry run start
+```bash
+ poetry install
+ poetry run start
 ```
