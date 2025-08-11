@@ -95,7 +95,7 @@ def handle_update(contact_manager: ContactManager) -> None:
     print("  2. phone")
     print("  3. email")
 
-    target = input("  >  ")
+    target = input("\n  >  ")
     new_value = input("  Input the new value:\n  > ")
 
     match target:
