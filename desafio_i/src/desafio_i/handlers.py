@@ -53,12 +53,11 @@ def handle_del(contact_manager: ContactManager) -> None:
 
     email = input("󰛮  Input the email you would like to remove:\n  > ")
 
-    updated_list: list[Contact] = list(
-        filter(
-            lambda contact: contact["email"] == email,
-            contact_manager.get_contacts(),
-        )
-    )
+    updated_list: list[Contact] = [
+        contact
+        for contact in contact_manager.get_contacts()
+        if contact["email"] == email
+    ]
 
     # Remove everyone that has this email.
     for contact in updated_list:
@@ -75,12 +74,11 @@ def handle_update(contact_manager: ContactManager) -> None:
     if email == "":
         return
 
-    updated_list: list[Contact] = list(
-        filter(
-            lambda contact: contact["email"] == email,
-            contact_manager.get_contacts(),
-        )
-    )
+    updated_list: list[Contact] = [
+        contact
+        for contact in contact_manager.get_contacts()
+        if contact["email"] == email
+    ]
 
     # Return if no contacts with that email were found.
     if len(updated_list) == 0:

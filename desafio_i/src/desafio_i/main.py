@@ -23,7 +23,7 @@ def main():
                 # Receive input from stdin to register a new contact.
                 handle_add(contact_manager=manager)
 
-            case "2" | "del":
+            case "2" | "del" | "remove":
                 # Pass an arbitrary email to delete the contact from the list.
                 handle_del(contact_manager=manager)
 
