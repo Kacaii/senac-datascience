@@ -31,3 +31,8 @@ def test_contact_manager():
         manager.update_contact(contact=contact, field=field, new_value=new_value)
 
         assert contact[field] == new_value
+
+    #   Wibble is rmeoved from the list ---------------------------------------
+    manager.remove_contact(wibble)
+    assert 0 == len(manager.get_contacts())
+    assert wibble not in manager.get_contacts()
