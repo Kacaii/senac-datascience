@@ -21,10 +21,6 @@ class Contact:
     def __setitem__(self, key, new_value):
         self.__dict__[key] = new_value
 
-    def __str__(self) -> str:
-        "󰦨  String representation of a contact."
-        return f"\tname:\t{self.name}\tphone:\t{self.phone}\temail:\t{self.email}"
-
 
 class ContactManager:
     """
