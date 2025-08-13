@@ -1,0 +1,22 @@
+[project]
+name = "atividade-2-metodo-cientifico"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Kacaii",email = "kacaii.privado@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "matplotlib (>=3.10.5,<4.0.0)",
+    "pytest (>=8.4.1,<9.0.0)",
+    "polars (>=1.32.2,<2.0.0)"
+]
+
+[tool.poetry]
+packages = [{include = "atividade_2_metodo_cientifico", from = "src"}]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
