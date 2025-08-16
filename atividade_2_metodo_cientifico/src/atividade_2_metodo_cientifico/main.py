@@ -21,8 +21,37 @@ import polars as pl
 
 
 def main():
-    df = pl.read_csv("src/students.csv")
-    print(df)
+    df = pl.scan_csv("src/students.csv")
+
+    #   Hypotesis: AI is used more often on fields related to technology. -----
+    total_hours_per_field = (
+        df.group_by(pl.col("Stream").alias("field"))
+        .agg(pl.sum("Daily_Usage_Hours").round(decimals=2).alias("total_hours"))
+        .sort("total_hours", descending=True)
+    )
+    print("   Hypotesis: AI is used more often on fields related to technology")
+    print("==> Study fields that use AI tools the most:")
+    print(total_hours_per_field.collect().head(5))  #   Confirmed
+
+    #   Hypotesis: AI is used more often at the starting years. ---------------
+    first_half = df.filter(pl.col("Year_of_Study") <= 2)
+    second_half = df.filter(pl.col("Year_of_Study") >= 3)
+
+    first_half_hours = first_half.select(
+        pl.sum("Daily_Usage_Hours").alias("first_half_total_hours")
+    )
+
+    second_half_hours = second_half.select(
+        pl.sum("Daily_Usage_Hours").alias("second_half_total_hours")
+    )
+
+    total_hours_per_half = pl.concat(
+        [first_half_hours, second_half_hours], how="horizontal"
+    )
+
+    print("   Hypotesis: AI is used more often at the starting years.")
+    print("==> Total AI usage for each half:")
+    print(total_hours_per_half.collect().head(4))  #   Confirmed
 
 
 if __name__ == "__main__":
