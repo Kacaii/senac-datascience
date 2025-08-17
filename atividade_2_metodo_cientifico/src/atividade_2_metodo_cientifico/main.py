@@ -34,24 +34,24 @@ def main():
     print(total_hours_per_field.collect().head(5))  #   Confirmed
 
     #   Hypotesis: AI is used more often at the starting years. ---------------
-    first_half = df.filter(pl.col("Year_of_Study") <= 2)
-    second_half = df.filter(pl.col("Year_of_Study") >= 3)
-
-    first_half_hours = first_half.select(
-        pl.sum("Daily_Usage_Hours").alias("first_half_total_hours")
+    yearly_ai_usage = (
+        df.group_by(pl.col("Year_of_Study").alias("year"))
+        .agg(pl.sum("Daily_Usage_Hours").alias("total_hours_by_year"))
+        .sort("year")
     )
 
-    second_half_hours = second_half.select(
-        pl.sum("Daily_Usage_Hours").alias("second_half_total_hours")
-    )
+    ai_usage_by_period = yearly_ai_usage.with_columns(
+        pl.when(pl.col("year") <= 2)
+        .then(pl.col("total_hours_by_year").head(2).sum())  # First two years.
+        .alias("early_years_total_hours"),
+        pl.when(pl.col("year") >= 3)
+        .then(pl.col("total_hours_by_year").tail(2).sum())  # Last two years.
+        .alias("later_years_total_hours"),
+    ).fill_null(strategy="zero")
 
-    total_hours_per_half = pl.concat(
-        [first_half_hours, second_half_hours], how="horizontal"
-    )
-
-    print("   Hypotesis: AI is used more often at the starting years.")
-    print("==> Total AI usage for each half:")
-    print(total_hours_per_half.collect().head(4))  #   Confirmed
+    print("   Hypotesis: AI is used more often at the early years of college.")
+    print("==> Total AI usage per year and period:")
+    print(ai_usage_by_period.collect().head(4))
 
 
 if __name__ == "__main__":
