@@ -1,5 +1,5 @@
 [project]
-name = "desafio-i"
+name = "app"
 version = "0.1.0"
 description = ""
 authors = [{ name = "Kacaii", email = "kacaii.privado@gmail.com" }]
@@ -8,10 +8,10 @@ requires-python = ">=3.12"
 dependencies = ["polars-lts-cpu (>=1.32.2,<2.0.0)", "pytest (>=8.4.1,<9.0.0)"]
 
 [tool.poetry]
-packages = [{ include = "desafio_i", from = "src" }]
+packages = [{ include = "app", from = "src" }]
 
 [tool.poetry.scripts]
-start = "desafio_i.main:main"
+start = "app.main:main"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

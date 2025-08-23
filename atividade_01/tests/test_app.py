@@ -1,4 +1,4 @@
-from src.desafio_i.contact_manager import ContactManager, Contact
+from app.contact_manager import Contact, ContactManager
 
 
 def test_contact_manager():
