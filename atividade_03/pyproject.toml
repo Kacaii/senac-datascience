@@ -15,8 +15,12 @@ dependencies = [
 packages = [{ include = "app", from = "src" }]
 
 [tool.poetry.scripts]
+# 󰞋  Display a help message
 help = "app.help:main"
-normal_distribution = "app.normal_distribution:main"
+
+#   Main scripts
+kde = "app.kde:main"
+histogram = "app.histogram:main"
 
 
 [build-system]

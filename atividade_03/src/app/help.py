@@ -3,7 +3,8 @@ def main():
     Usage:
 
         poetry run help                     Display this help message
-        poetry run normal_distribution      Display the normal distribution plot
+        poetry run kde                      Display the Kernel Density Estimation plot
+        poetry run histogram                Display the Histogram plot
     """
 
     print(msg)

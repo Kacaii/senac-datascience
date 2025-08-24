@@ -30,22 +30,7 @@ def main():
     mean_val = df.select(pl.col("Daily_Usage_Hours")).mean().collect().item()
     std_val = df.select(pl.col("Daily_Usage_Hours")).std(ddof=1).collect().item()
 
-    # 󰄨  Values ----------------------------------------------------------------
-    linear_spacing = np.linspace(
-        mean_val - 4 * std_val,
-        mean_val + 4 * std_val,
-        1000,
-    )
-    density = norm.pdf(linear_spacing, mean_val, std_val)
-
-    # 󰹉  Building the plot -----------------------------------------------------
-    plt.plot(linear_spacing, density)
-    plt.xlabel("Values")
-    plt.ylabel("Density")
-    plt.title("Normal Distribution: Daily AI Usage in hours")
-
-    # 
-    plt.show()
+    pass
 
 
 if __name__ == "__main__":
