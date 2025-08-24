@@ -40,9 +40,9 @@ def main():
 
     # 󰹉  Building the plot -----------------------------------------------------
     plt.plot(linear_spacing, density)
-    plt.xlabel("Linear Spacing")
+    plt.xlabel("Values")
     plt.ylabel("Density")
-    plt.title("Normal Distribution")
+    plt.title("Normal Distribution: Daily AI Usage in hours")
 
     # 
     plt.show()
