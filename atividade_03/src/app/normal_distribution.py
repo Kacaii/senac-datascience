@@ -31,9 +31,14 @@ def main():
     std_val = df.select(pl.col("Daily_Usage_Hours")).std(ddof=1).collect().item()
 
     # 󰄨  Values ----------------------------------------------------------------
-    linear_spacing = np.linspace(mean_val - 4 * std_val, mean_val + 4 * std_val, 1000)
+    linear_spacing = np.linspace(
+        mean_val - 4 * std_val,
+        mean_val + 4 * std_val,
+        1000,
+    )
     density = norm.pdf(linear_spacing, mean_val, std_val)
 
+    # 󰹉  Building the plot -----------------------------------------------------
     plt.plot(linear_spacing, density)
     plt.xlabel("Linear Spacing")
     plt.ylabel("Density")
