@@ -15,6 +15,7 @@ dependencies = [
 packages = [{ include = "app", from = "src" }]
 
 [tool.poetry.scripts]
+help = "app.help:main"
 normal_distribution = "app.normal_distribution:main"
 
 
