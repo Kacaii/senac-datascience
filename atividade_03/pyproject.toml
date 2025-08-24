@@ -22,6 +22,7 @@ help = "app.help:main"
 kde = "app.kde:main"
 histogram = "app.histogram:main"
 boxplot = "app.boxplot:main"
+boxplot_no_outliers = "app.boxplot_no_outliers:main"
 
 
 [build-system]

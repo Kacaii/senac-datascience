@@ -28,7 +28,7 @@ def main():
     daily_usage_hours_sorted = df.select(pl.col("Daily_Usage_Hours").sort()).collect()
 
     # 󰹉  Building the plot -----------------------------------------------------
-    plt.boxplot(x=daily_usage_hours_sorted, showfliers=True)
+    plt.boxplot(x=daily_usage_hours_sorted, showfliers=False)  # <- Set to False
 
     # 
     plt.show()
