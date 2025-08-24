@@ -21,6 +21,7 @@ help = "app.help:main"
 #   Main scripts
 kde = "app.kde:main"
 histogram = "app.histogram:main"
+boxplot = "app.boxplot:main"
 
 
 [build-system]

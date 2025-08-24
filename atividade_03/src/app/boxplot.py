@@ -25,9 +25,10 @@ def main():
     df = pl.scan_csv("src/students.csv")
 
     # 󰓫  Dataframes ------------------------------------------------------------
-    daily_usage_hours = df.select(pl.col("Daily_Usage_Hours")).collect().to_numpy()
+    daily_usage_hours_sorted = df.select(pl.col("Daily_Usage_Hours").sort()).collect()
 
     # 󰹉  Building the plot -----------------------------------------------------
+    plt.boxplot(x=daily_usage_hours_sorted)
 
     # 
     plt.show()

@@ -25,10 +25,10 @@ def main():
     df = pl.scan_csv("src/students.csv")
 
     # 󰓫  Dataframes ------------------------------------------------------------
-    daily_usage_hours = df.select(pl.col("Awareness_Level")).collect().to_numpy()
+    awareness_level = df.select(pl.col("Awareness_Level")).collect()
 
     # 󰹉  Building the plot -----------------------------------------------------
-    plt.hist(x=daily_usage_hours)
+    plt.hist(x=awareness_level)
     plt.xlabel("Awareness_Level")
     plt.ylabel("Frequency")
     plt.title("Histogram: AI Awareness Level")
