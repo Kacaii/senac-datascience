@@ -5,13 +5,17 @@ description = ""
 authors = [{ name = "Kacaii", email = "kacaii.privado@gmail.com" }]
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = ["polars (>=1.32.3,<2.0.0)", "matplotlib (>=3.10.5,<4.0.0)", "scipy (>=1.16.1,<2.0.0)"]
+dependencies = [
+  "polars (>=1.32.3,<2.0.0)",
+  "matplotlib (>=3.10.5,<4.0.0)",
+  "scipy (>=1.16.1,<2.0.0)",
+]
 
 [tool.poetry]
 packages = [{ include = "app", from = "src" }]
 
 [tool.poetry.scripts]
-start = "app.main:main"
+normal_distribution = "app.normal_distribution:main"
 
 
 [build-system]

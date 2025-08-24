@@ -26,6 +26,22 @@ import polars as pl
 def main():
     df = pl.scan_csv("src/students.csv")
 
+    # 󰓫  Dataframes ------------------------------------------------------------
+    mean_val = df.select(pl.col("Daily_Usage_Hours")).mean().collect().item()
+    std_val = df.select(pl.col("Daily_Usage_Hours")).std(ddof=1).collect().item()
+
+    # 󰄨  Values ----------------------------------------------------------------
+    linear_spacing = np.linspace(mean_val - 4 * std_val, mean_val + 4 * std_val, 1000)
+    density = norm.pdf(linear_spacing, mean_val, std_val)
+
+    plt.plot(linear_spacing, density)
+    plt.xlabel("Linear Spacing")
+    plt.ylabel("Density")
+    plt.title("Normal Distribution")
+
+    # 
+    plt.show()
+
 
 if __name__ == "__main__":
     main()
