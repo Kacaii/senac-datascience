@@ -1,5 +1,3 @@
-import numpy as np
-from scipy.stats import norm
 import matplotlib.pyplot as plt
 import polars as pl
 
@@ -27,10 +25,16 @@ def main():
     df = pl.scan_csv("src/students.csv")
 
     # 󰓫  Dataframes ------------------------------------------------------------
-    mean_val = df.select(pl.col("Daily_Usage_Hours")).mean().collect().item()
-    std_val = df.select(pl.col("Daily_Usage_Hours")).std(ddof=1).collect().item()
+    daily_usage_hours = df.select(pl.col("Daily_Usage_Hours")).collect().to_numpy()
 
-    pass
+    # 󰹉  Building the plot -----------------------------------------------------
+    plt.hist(x=daily_usage_hours)
+    plt.xlabel("Hours")
+    plt.xlabel("Frequency")
+    plt.title("Histogram: Daily AI Usage in hours")
+
+    # 
+    plt.show()
 
 
 if __name__ == "__main__":
