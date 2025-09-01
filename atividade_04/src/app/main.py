@@ -19,12 +19,15 @@ def main():
     df = pl.scan_parquet("src/train.parquet")
     sns.set_theme(style="ticks")
 
-    survived_with_age_col = df.filter(pl.col("survived") == 1).select(
+    # AGE KDE ------------------------------------------------------------------
+    survivors_age = df.filter(pl.col("survived") == 1).select(
         pl.col("age").fill_nan(pl.mean("age"))
     )
 
-    sns.histplot(data=survived_with_age_col.collect(), x="age", kde=True)
-    plt.savefig("src/graphs/survived_by_age.")
+    sns.histplot(data=survivors_age.collect(), x="age", kde=True)
+    plt.ylabel("total")
+    plt.xlabel("age")
+    plt.savefig("src/graphs/survived_by_age_kde.")
 
 
 if __name__ == "__main__":
