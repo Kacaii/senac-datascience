@@ -17,7 +17,7 @@ import polars as pl
 
 def main():
     df = pl.scan_parquet("src/train.parquet")
-    sns.set_theme(style="ticks", palette="pastel")
+    sns.set_theme()
 
     titanic_passengers = df.select(
         pl.col("age").fill_null(pl.col("age").mean()),
