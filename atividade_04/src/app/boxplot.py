@@ -19,18 +19,22 @@ def main():
     df = pl.scan_parquet("src/train.parquet")
     sns.set_theme(style="ticks", palette="pastel")
 
-    victims = df.filter(pl.col("survived") == 0)
+    titanic_passengers = df.select(
+        pl.col("age").fill_null(pl.col("age").mean()),
+        pl.col("survived").drop_nulls(),
+        pl.col("pclass").fill_null(pl.col("pclass").mean()).alias("class"),
+    )
 
     sns.boxplot(
-        data=victims.collect(),
-        x="pclass",
+        data=titanic_passengers.collect(),
+        x="class",
         y="age",
-        hue="sex",
+        hue="survived",
         gap=0.2,
     )
 
     #   Plots -----------------------------------------------------------------
-    plt.title("Victims of the Titanic")
+    plt.title("Passengers of the Titanic")
     plt.ylabel("Age")
     plt.xlabel("Ticket Class")
 

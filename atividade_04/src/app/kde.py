@@ -19,18 +19,21 @@ def main():
     df = pl.scan_parquet("src/train.parquet")
     sns.set_theme(style="ticks", palette="pastel")
 
-    victims = df.filter(pl.col("survived") == 0)
+    titanic_passengers = df.select(
+        pl.col("age").fill_null(pl.col("age").mean()),
+        pl.col("pclass").fill_null(pl.col("pclass").mean()).alias("class"),
+    )
 
     sns.histplot(
-        data=victims.collect(),
+        data=titanic_passengers.collect(),
         x="age",
         kde=False,
-        hue="pclass",
+        hue="class",
         multiple="stack",
     )
 
     #   Plots -----------------------------------------------------------------
-    plt.title("Victims of the Titanic")
+    plt.title("Passengers of the Titanic")
     plt.ylabel("Number of Passengers")
     plt.xlabel("Age")
 
