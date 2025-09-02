@@ -17,17 +17,29 @@ import polars as pl
 
 def main():
     df = pl.scan_parquet("src/train.parquet")
-    sns.set_theme(style="ticks")
+    sns.set_theme(style="ticks", palette="pastel")
 
-    # AGE KDE ------------------------------------------------------------------
+    # 󱣻  DataFrames ------------------------------------------------------------
     survivors_age = df.filter(pl.col("survived") == 1).select(
-        pl.col("age").fill_nan(pl.mean("age"))
+        pl.col("age").fill_nan(pl.mean("age")),
+        pl.col("sex").alias("gender"),
     )
 
-    sns.histplot(data=survivors_age.collect(), x="age", kde=True)
-    plt.ylabel("total")
-    plt.xlabel("age")
-    plt.savefig("src/graphs/survived_by_age_kde.")
+    sns.histplot(
+        data=survivors_age.collect(),
+        x="age",
+        kde=True,
+        hue="gender",
+        multiple="stack",
+    )
+
+    #   Plots -----------------------------------------------------------------
+    plt.title("Survivors of the Titanic")
+    plt.ylabel("Number of Survivors")
+    plt.xlabel("Age")
+
+    # Saving the file to be used on the README
+    plt.savefig("src/graphs/survivors_age_gender_kde.")
 
 
 if __name__ == "__main__":
