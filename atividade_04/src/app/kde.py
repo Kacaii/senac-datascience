@@ -21,7 +21,6 @@ def main():
 
     titanic_passengers = df.select(
         pl.col("age").fill_null(pl.col("age").mean()),
-        # pl.col("pclass").fill_null(pl.col("pclass").mean()).alias("class"),
         pl.col("survived").drop_nulls(),
     )
 
