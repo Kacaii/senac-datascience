@@ -2,4 +2,4 @@
 
 ## Histogram
 
-![Survivors KDE](./src/graphs/survived_by_age_kde.png)
+![Survivors KDE](./src/graphs/survivors_age_gender_kde.png)
