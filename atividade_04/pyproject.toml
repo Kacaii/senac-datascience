@@ -18,7 +18,9 @@ dependencies = [
 packages = [{ include = "app", from = "src" }]
 
 [tool.poetry.scripts]
-kde = "app.histogram_kde:main"
+
+kde = "app.kde:main"
+boxplot = "app.boxplot:main"
 
 
 [build-system]

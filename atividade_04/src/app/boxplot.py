@@ -19,27 +19,23 @@ def main():
     df = pl.scan_parquet("src/train.parquet")
     sns.set_theme(style="ticks", palette="pastel")
 
-    # 󱣻  DataFrames ------------------------------------------------------------
-    survivors_age = df.filter(pl.col("survived") == 1).select(
-        pl.col("age").fill_nan(pl.mean("age")),
-        pl.col("pclass").alias("ticket_class"),
-    )
+    victims = df.filter(pl.col("survived") == 0)
 
-    sns.histplot(
-        data=survivors_age.collect(),
-        x="age",
-        kde=True,
-        hue="ticket_class",
-        multiple="stack",
+    sns.boxplot(
+        data=victims.collect(),
+        x="pclass",
+        y="age",
+        hue="sex",
+        gap=0.2,
     )
 
     #   Plots -----------------------------------------------------------------
-    plt.title("Survivors of the Titanic")
-    plt.ylabel("Number of Survivors")
-    plt.xlabel("Age")
+    plt.title("Victims of the Titanic")
+    plt.ylabel("Age")
+    plt.xlabel("Ticket Class")
 
     # Saving the file to be used on the README
-    plt.savefig("src/graphs/kde.png")
+    plt.savefig("src/graphs/boxplot.png")
 
 
 if __name__ == "__main__":
