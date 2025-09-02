@@ -17,19 +17,20 @@ import polars as pl
 
 def main():
     df = pl.scan_parquet("src/train.parquet")
-    sns.set_theme(style="ticks", palette="pastel")
+    sns.set_theme()
 
     titanic_passengers = df.select(
         pl.col("age").fill_null(pl.col("age").mean()),
-        pl.col("pclass").fill_null(pl.col("pclass").mean()).alias("class"),
+        # pl.col("pclass").fill_null(pl.col("pclass").mean()).alias("class"),
+        pl.col("survived").drop_nulls(),
     )
 
     sns.histplot(
         data=titanic_passengers.collect(),
         x="age",
-        kde=False,
-        hue="class",
-        multiple="stack",
+        kde=True,
+        hue="survived",
+        multiple="dodge",
     )
 
     #   Plots -----------------------------------------------------------------
