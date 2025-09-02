@@ -6,11 +6,11 @@ authors = [{ name = "Kacaii", email = "kacaii.privado@gmail.com" }]
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-  "matplotlib (>=3.10.6,<4.0.0)", #  Display Data
-  "polars (>=1.33.0,<2.0.0)",     #  Dataframes
-  "seaborn (>=0.13.2,<0.14.0)",   #  Dataframs
-  "altair (>=5.5.0,<6.0.0)",      #  Needed to display a window
-  "pyarrow (>=21.0.0,<22.0.0)",   #  Needed to display a window
+  "matplotlib (>=3.10.6,<4.0.0)",  #  Display Data
+  "polars (>=1.33.0,<2.0.0)",      #  Dataframes
+  "seaborn (>=0.13.2,<0.14.0)",    #  Dataframs
+  "altair (>=5.5.0,<6.0.0)",       #  Needed to display a window
+  "pyarrow (>=21.0.0,<22.0.0)",    #  Needed to display a window
   "scikit-learn (>=1.7.1,<2.0.0)",
 ]
 
@@ -18,7 +18,7 @@ dependencies = [
 packages = [{ include = "app", from = "src" }]
 
 [tool.poetry.scripts]
-start = "app.main:main"
+kde = "app.histogram_kde:main"
 
 
 [build-system]
