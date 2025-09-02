@@ -22,14 +22,14 @@ def main():
     # 󱣻  DataFrames ------------------------------------------------------------
     survivors_age = df.filter(pl.col("survived") == 1).select(
         pl.col("age").fill_nan(pl.mean("age")),
-        pl.col("sex").alias("gender"),
+        pl.col("pclass").alias("ticket_class"),
     )
 
     sns.histplot(
         data=survivors_age.collect(),
         x="age",
         kde=True,
-        hue="gender",
+        hue="ticket_class",
         multiple="stack",
     )
 
@@ -39,7 +39,7 @@ def main():
     plt.xlabel("Age")
 
     # Saving the file to be used on the README
-    plt.savefig("src/graphs/survivors_age_gender_kde.")
+    plt.savefig("src/graphs/kde.png")
 
 
 if __name__ == "__main__":
