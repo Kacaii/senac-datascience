@@ -9,5 +9,3 @@ build_graphs:
   @ poetry install
   poetry run kde
   poetry run boxplot
-
-
