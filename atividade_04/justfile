@@ -1,5 +1,11 @@
+#   Display available recipes
+default:
+  @ just --list
+
 #   Update graphs on the markdown file
 build_graphs:
-  poetry install
+  @ poetry install
   poetry run kde
   poetry run boxplot
+
+
