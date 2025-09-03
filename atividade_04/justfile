@@ -1,3 +1,5 @@
+alias b := build_graphs
+
 #   Display available recipes
 default:
   @ just --list
