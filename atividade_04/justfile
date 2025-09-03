@@ -1,11 +1,16 @@
-alias b := build_graphs
-
 #   Display available recipes
 default:
-  @ just --list
+    @ just --list
 
-#   Update graphs on the markdown file
-build_graphs:
-  @ poetry install
-  poetry run kde
-  poetry run boxplot
+alias i := install
+
+#   Update poetry dependencies
+install:
+    poetry install
+
+alias b := build_graphs
+
+#   Update graphs on the markdown file
+build_graphs: install
+    poetry run kde
+    poetry run boxplot
